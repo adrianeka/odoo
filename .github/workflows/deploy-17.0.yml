@@ -42,21 +42,22 @@ jobs:
             echo "-- docker compose version --"
             docker compose version || true
 
+            docker system prune -f || true
+
             # Prefer docker-compose (v1) if present, else docker compose (v2 plugin)
             if command -v docker-compose >/dev/null 2>&1; then
               echo "Using docker-compose (v1)"
               docker-compose pull || true
-              docker-compose up -d --build
+              docker-compose up -d --build --remove-orphans
             elif docker compose version >/dev/null 2>&1; then
               echo "Using docker compose (v2)"
               docker compose pull || true
-              docker compose up -d --build
+              docker-compose up -d --build --remove-orphans
             else
               echo "ERROR: no docker compose available on remote host" >&2
               exit 1
             fi
 
-            docker system prune -f || true
             exit 0
           ENDSSH
 
