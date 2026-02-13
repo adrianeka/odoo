@@ -1,16 +1,15 @@
 FROM odoo:17
 
-# Gunakan root sebentar untuk setup folder & config
 USER root
 
-# Gabungkan mkdir dan chown dalam satu layer untuk efisiensi
-RUN mkdir -p /mnt/extra-addons /var/lib/odoo/filestore /etc/odoo && \
-    chown -R odoo:odoo /mnt/extra-addons /var/lib/odoo /etc/odoo
+# Cukup buat folder yang sekiranya tidak di-mount atau butuh struktur awal
+RUN mkdir -p /mnt/extra-addons /etc/odoo && \
+    chown -R odoo:odoo /mnt/extra-addons /etc/odoo
 
-# Copy config file (setelah chown agar file baru ini juga dimiliki odoo)
+# Copy config dengan owner yang tepat
 COPY --chown=odoo:odoo ./config/odoo.conf /etc/odoo/odoo.conf
 
-# KUNCI: Balikkan lagi ke user odoo agar aplikasi tidak error saat running
+# Tetap gunakan user odoo untuk keamanan
 USER odoo
 
 EXPOSE 8069

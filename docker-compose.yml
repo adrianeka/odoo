@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   odoo17:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: odoo17:latest
     container_name: odoo17
     ports:
@@ -14,11 +16,11 @@ services:
       - DB_PASSWORD=""
       - DB_NAME=${ODOO_DB_NAME}
       - ADMIN_PASSWORD=${ODOO_ADMIN_PASSWORD}
-    command: bash -c "chown -R 1000:1000 /var/lib/odoo || true; exec odoo -c /etc/odoo/odoo.conf"
+    command: odoo -c /etc/odoo/odoo.conf
     entrypoint: []
     volumes:
       - ./addons:/mnt/extra-addons
-      - ./filestore:/var/lib/odoo
+      - ~/filestore_backup:/var/lib/odoo
       - ./config:/etc/odoo
     extra_hosts:
       - "host.docker.internal:host-gateway"
