@@ -1,0 +1,64 @@
+name: Deploy Odoo 17
+
+on:
+  push:
+    branches: [ '17.0' ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VM_HOST: ${{ secrets.VM_HOST }}
+      VM_USER: ${{ secrets.VM_USER }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.VM_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy to VM (minimal)
+        run: |
+          ssh -o StrictHostKeyChecking=no ${VM_USER}@${VM_HOST} << 'ENDSSH'
+            set -euo pipefail
+            cd ~/odoo17 || exit 1
+            git fetch --all
+            git reset --hard origin/17.0
+
+            # Ensure required directories exist
+            mkdir -p filestore config addons
+
+            # Debug versions
+            echo "-- docker --version --"
+            docker --version || true
+            echo "-- docker-compose --version --"
+            docker-compose --version || true
+            echo "-- docker compose version --"
+            docker compose version || true
+
+            # Prefer docker-compose (v1) if present, else docker compose (v2 plugin)
+            if command -v docker-compose >/dev/null 2>&1; then
+              echo "Using docker-compose (v1)"
+              docker-compose pull || true
+              docker-compose up -d --build
+            elif docker compose version >/dev/null 2>&1; then
+              echo "Using docker compose (v2)"
+              docker compose pull || true
+              docker compose up -d --build
+            else
+              echo "ERROR: no docker compose available on remote host" >&2
+              exit 1
+            fi
+
+            docker system prune -f || true
+            exit 0
+          ENDSSH
+
+      - name: Health check
+        run: |
+          sleep 10
+          curl -f http://${{ secrets.VM_HOST }}:8070/web/database/selector || (echo "Health check failed" && exit 1)
