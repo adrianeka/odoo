@@ -35,6 +35,11 @@ fi
 
 # Bring up the application
 cd ~/odoo17 || true
+
+# Ensure host directories are writable by the current user (prevents permission churn)
+# when this script is run on the VM as the deploy user this keeps ownership consistent.
+chown -R "$(id -u):$(id -g)" ./filestore ./config ./addons || true
+
 docker compose pull || true
 docker compose up -d --build || true
 
