@@ -28,6 +28,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${VM_USER}@${VM_HOST} << 'ENDSSH'
             set -e
             cd ~/odoo17 || exit 1
+            docker-compose down || true
             sudo chown -R ${VM_USER}:${VM_USER} .
             
             git fetch --all
