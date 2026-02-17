@@ -26,8 +26,10 @@ jobs:
       - name: Deploy to VM (minimal)
         run: |
           ssh -o StrictHostKeyChecking=no ${VM_USER}@${VM_HOST} << 'ENDSSH'
-            set -euo pipefail
+            set -e
             cd ~/odoo17 || exit 1
+            sudo chown -R ${VM_USER}:${VM_USER} .
+            
             git fetch --all
             git reset --hard origin/17.0
 
