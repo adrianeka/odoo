@@ -50,3 +50,11 @@ package.json
 /man/
 /share/
 /src/
+
+# Odoo data
+filestore/
+sessions/
+*.log
+
+# Personal keys
+keys/

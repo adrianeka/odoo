@@ -20,7 +20,7 @@ services:
     entrypoint: []
     volumes:
       - ./addons:/mnt/extra-addons
-      - ~/filestore_backup:/var/lib/odoo
+      - ./filestore:/var/lib/odoo
       - ./config:/etc/odoo
     extra_hosts:
       - "host.docker.internal:host-gateway"

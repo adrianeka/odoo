@@ -1,6 +1,4 @@
 .git
 .github
 filestore
-addons
 **/filestore
-**/addons
