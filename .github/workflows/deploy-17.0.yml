@@ -38,9 +38,10 @@ jobs:
             docker system prune -f || true
 
             docker-compose pull || true
-            docker-compose up -d --build --remove-orphans
-
-            exit 0
+            docker-compose up -d --build --remove-orphans || true
+            
+            sleep 10
+            docker inspect -f '{{.State.Running}}' odoo17 | grep -q "true"
           ENDSSH
 
       - name: Health check
