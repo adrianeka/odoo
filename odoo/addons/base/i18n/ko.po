@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-09 12:16+0000\n"
-"PO-Revision-Date: 2026-01-23 07:34+0000\n"
+"PO-Revision-Date: 2026-02-20 04:34+0000\n"
 "Last-Translator: \"Kwanghee Park (kwpa)\" <kwpa@odoo.com>\n"
 "Language-Team: Korean <https://translate.odoo.com/projects/odoo-19/base/ko/>"
 "\n"
@@ -723,6 +723,9 @@ msgid ""
 "        Augment Livechat with AI Agents.\n"
 "    "
 msgstr ""
+"\n"
+"        AI 에이전트로 실시간 채팅 기능을 업그레이드하세요.\n"
+"    "
 
 #. module: base
 #: model:ir.module.module,summary:base.module_l10n_sa_edi
@@ -818,6 +821,8 @@ msgid ""
 "\n"
 "* Add export of IVA Simple Tax Report.\n"
 msgstr ""
+"\n"
+"* IVA 간이 세금 신고서 내보내기 기능 추가.\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_ai_app
@@ -6439,6 +6444,8 @@ msgid ""
 "\n"
 "Fiscal Categories Data for Belgium\n"
 msgstr ""
+"\n"
+"벨기에 재정 카테고리 데이터\n"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_tr_nilvera_einvoice
@@ -16210,7 +16217,7 @@ msgstr "라틴 아메리카 지역에서 이용할 수 있는 결제대행업체
 #. module: base
 #: model:ir.module.module,summary:base.module_payment_iyzico
 msgid "A payment provider covering Turkey."
-msgstr ""
+msgstr "터키 지역의 결제대행업체입니다."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_payment_mercado_pago
@@ -17580,7 +17587,7 @@ msgstr "고급 행사"
 #. module: base
 #: model:ir.module.module,summary:base.module_sale_enterprise
 msgid "Advanced Features for Sale Management"
-msgstr ""
+msgstr "판매 관리 고급 기능"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.act_report_xml_view
@@ -19529,7 +19536,7 @@ msgstr "아르헨티나 - 재고"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_ar_reports_simple
 msgid "Argentinean Accounting IVA Simple Export"
-msgstr ""
+msgstr "아르헨티나 회계 IVA 기본 내보내기"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_ar_reports
@@ -20323,7 +20330,7 @@ msgstr "호주 - 급여"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_au_hr_payroll_api
 msgid "Australia - Payroll with API"
-msgstr ""
+msgstr "호주 - API를 통한 급여 관리"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_au_hr_payroll_account
@@ -20577,7 +20584,7 @@ msgstr "자동 비우기"
 #: model:ir.module.module,description:base.module_ai_crm_livechat
 #: model:ir.module.module,summary:base.module_ai_crm_livechat
 msgid "Automatically create leads from livechat."
-msgstr ""
+msgstr "실시간 채팅에서 자동으로 영업제안을 생성합니다."
 
 #. module: base
 #: model:ir.module.module,description:base.module_ai_crm
@@ -21088,7 +21095,7 @@ msgstr "기본 가져오기 모듈"
 #. module: base
 #: model:ir.module.module,summary:base.module_ai
 msgid "Base module for AI features"
-msgstr ""
+msgstr "AI 기능 기본 모듈"
 
 #. module: base
 #: model:ir.module.module,description:base.module_l10n_si_reports
@@ -21252,7 +21259,7 @@ msgstr "벨기에 - 차량에 허용되지 않은 비용"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_be_fiscal_categories
 msgid "Belgium - Fiscal Categories Data"
-msgstr ""
+msgstr "벨기에 - 재정 카테고리 데이터"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_be_coda
@@ -23889,7 +23896,7 @@ msgstr "사용하게 만들기"
 #. module: base
 #: model:ir.module.module,summary:base.module_accountant_knowledge
 msgid "Create Audit Reports with Knowledge"
-msgstr ""
+msgstr "지식 센터를 활용하여 감사 보고서 생성하기"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_server_action_form
@@ -26469,7 +26476,7 @@ msgstr "SMS를 통해 고객에게 약속에 대한 알림을 보낼 수 있습�
 #. module: base
 #: model:ir.module.module,description:base.module_voip_onsip
 msgid "Enables Phone compatibility with OnSIP."
-msgstr ""
+msgstr "OnSIP 호환 전화 기능을 활성화합니다."
 
 #. module: base
 #: model:ir.module.module,description:base.module_theme_enark
@@ -29445,7 +29452,7 @@ msgstr "걸프 협력 회의 (GCC)"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_gcc_invoice
 msgid "Gulf Cooperation Council - Invoice"
-msgstr ""
+msgstr "걸프협력회의 - 청구서"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_gcc_pos
@@ -33689,7 +33696,7 @@ msgstr "재무 및 분석 회계 관리"
 #. module: base
 #: model:ir.module.module,summary:base.module_account_fiscal_categories_fleet
 msgid "Manage fiscal categories with fleets"
-msgstr ""
+msgstr "차량 관리에 대한 재정 카테고리 관리"
 
 #. module: base
 #: model:ir.module.module,summary:base.module_website_sale_stock
@@ -33882,12 +33889,12 @@ msgstr "지도 보기"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_product_margin
 msgid "Margins by Products"
-msgstr "제품별 이윤"
+msgstr "제품별 마진"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_sale_margin
 msgid "Margins in Sales Orders"
-msgstr "판매 주문별 이윤"
+msgstr "판매 주문별 마진"
 
 #. module: base
 #: model:res.currency,currency_unit_label:base.BAM
@@ -35336,7 +35343,7 @@ msgstr "'%s' 유형에 대한 기본 화면을 찾을 수 없습니다!"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.wizard_lang_export
 msgid "No file could be exported."
-msgstr ""
+msgstr "파일을 내보낼 수 없습니다."
 
 #. module: base
 #: model:ir.model.fields.selection,name:base.selection__ir_sequence__implementation__no_gap
@@ -38821,7 +38828,7 @@ msgstr "POS 셀프 주문 IoT"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_self_order_pine_labs
 msgid "POS Self Order Pine Labs"
-msgstr ""
+msgstr "POS 셀프 주문 Pine Labs"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_self_order_qfpay
@@ -39832,12 +39839,12 @@ msgstr "전화 번호 확인"
 #. module: base
 #: model:ir.module.module,summary:base.module_voip_crm
 msgid "Phone integration with CRM module."
-msgstr ""
+msgstr "통화 기능에 CRM 모듈을 통합합니다."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_voip_helpdesk
 msgid "Phone integration with Helpdesk module."
-msgstr ""
+msgstr "통화 기능에 헬프데스크 모듈을 통합합니다."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_voip_hr
@@ -39847,12 +39854,12 @@ msgstr ""
 #. module: base
 #: model:ir.module.module,summary:base.module_voip_hr_recruitment
 msgid "Phone integration with Recruitment module."
-msgstr ""
+msgstr "통화 기능에 채용 모듈을 통합합니다."
 
 #. module: base
 #: model:ir.module.module,summary:base.module_voip_sale_subscription
 msgid "Phone integration with Subscriptions module."
-msgstr ""
+msgstr "통화 기능에 구독 모듈을 통합합니다."
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_photography
@@ -39982,7 +39989,7 @@ msgstr "POS - 행사 판매"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_iot_adam_scale
 msgid "PoS IoT Adam Equipment Scales"
-msgstr ""
+msgstr "PoS IoT Adam 장치 측량계"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_pos_iot_ingenico
@@ -42773,7 +42780,7 @@ msgstr "사우디아라비아 - POS"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_sa_withholding_tax
 msgid "Saudi Arabia - Withholding Tax"
-msgstr ""
+msgstr "사우디아라비아 - 원천징수세"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_actions_report__attachment
@@ -43112,7 +43119,7 @@ msgstr "자금 이체"
 #. module: base
 #: model:ir.module.module,summary:base.module_sms_twilio
 msgid "Send SMS messages using Twilio"
-msgstr ""
+msgstr "Twilio를 통해 SMS 메시지 보내기"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_website_sms
@@ -43955,7 +43962,7 @@ msgstr "SNS 유투브"
 #. module: base
 #: model:ir.module.module,summary:base.module_social_media
 msgid "Social media connectors for company settings."
-msgstr "회사 설정을 위한 소셜미디어 연결기."
+msgstr "회사 설정용 소셜 미디어 커넥터입니다."
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_software_reseller
@@ -44097,7 +44104,7 @@ msgstr "스페인 - 회계 보고서 (2024 업데이트)"
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_es_sale_amazon
 msgid "Spain - Amazon Connector"
-msgstr "스페인 - 아마존 연결기"
+msgstr "스페인 - Amazon 커넥터"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_l10n_es_edi_facturae
@@ -44705,7 +44712,7 @@ msgstr "Strip 스타일 속성"
 #. module: base
 #: model:ir.module.module,description:base.module_hr_expense_stripe
 msgid "Stripe Issuing integration for expenses"
-msgstr ""
+msgstr "Stripe 경비 통합 발급"
 
 #. module: base
 #: model:ir.module.module,description:base.module_hr_expense_stripe_demo
@@ -48033,6 +48040,8 @@ msgid ""
 "Unicode strings with encoding declaration are not supported in XML.\n"
 "Remove the encoding declaration."
 msgstr ""
+"인코딩 구문이 포함된 유니코드 문자열은 XML에서 지원되지 않습니다.\n"
+"인코딩 구문을 제거하세요."
 
 #. module: base
 #. odoo-python
