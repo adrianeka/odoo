@@ -41,7 +41,7 @@ cd ~/odoo || true
 # when this script is run on the VM as the deploy user this keeps ownership consistent.
 chown -R "$(id -u):$(id -g)" ./filestore ./config ./addons || true
 
-docker compose pull || true
-docker compose up -d --build || true
+docker-compose pull || true
+docker-compose up -d --build || true
 
 echo "Deployment script finished"
