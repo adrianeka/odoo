@@ -28,7 +28,7 @@ jobs:
           # Deploy via SSH
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "${VM_USER}@${VM_HOST}" << 'ENDSSH'
             set -e
-            cd ~/odoo19 || { echo "Directory ~/odoo19 not found"; exit 1; }
+            cd ~/odoo || { echo "Directory ~/odoo not found"; exit 1; }
             
             # Pull latest changes
             git fetch origin 19.0

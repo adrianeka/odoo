@@ -35,7 +35,7 @@ else
 fi
 
 # Bring up the application
-cd ~/odoo19 || true
+cd ~/odoo || true
 
 # Ensure host directories are writable by the current user (prevents permission churn)
 # when this script is run on the VM as the deploy user this keeps ownership consistent.
