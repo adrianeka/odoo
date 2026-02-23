@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  odoo19:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: odoo19:latest
+    container_name: odoo19
+    ports:
+      - "8069:8069"  # Odoo 19 di port 8069
+    environment:
+      - HOST=host.docker.internal
+      - PORT=5432
+      - DB_USER=${ODOO_DB_USER}
+      - DB_PASSWORD=""
+      - DB_NAME=${ODOO_DB_NAME}
+      - ADMIN_PASSWORD=${ODOO_ADMIN_PASSWORD}
+    command: odoo -c /etc/odoo/odoo.conf
+    entrypoint: []
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./filestore:/var/lib/odoo
+      - ./config:/etc/odoo
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

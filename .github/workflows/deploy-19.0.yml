@@ -1,0 +1,41 @@
+name: Deploy Odoo 19.0
+
+on:
+  push:
+    branches:
+      - 19.0
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to VM
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VM_HOST: ${{ secrets.VM_HOST }}
+          VM_USER: ${{ secrets.VM_USER }}
+        run: |
+          # Setup SSH
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$VM_HOST" >> ~/.ssh/known_hosts
+
+          # Deploy via SSH
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "${VM_USER}@${VM_HOST}" << 'ENDSSH'
+            set -e
+            cd ~/odoo19 || { echo "Directory ~/odoo19 not found"; exit 1; }
+            
+            # Pull latest changes
+            git fetch origin 19.0
+            git reset --hard origin/19.0
+            
+            # Run deployment script
+            bash deploy.sh odoo19 odoo19
+            
+            echo "Deployment completed successfully!"
+          ENDSSH
