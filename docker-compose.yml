@@ -9,6 +9,7 @@ services:
     container_name: odoo19
     ports:
       - "8069:8069"  # Odoo 19 di port 8069
+      - "8072:8072"
     environment:
       - HOST=host.docker.internal
       - PORT=5432
