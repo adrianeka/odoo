@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_dashboard.Dashboard">
+        <div class="o_dashboard">
+            <div class="dashboard-header">
+                <h1>CRM Dashboard</h1>
+            </div>
+            <div class="date-filter">
+                <div class="filter-field">
+                    <label>From Date</label>
+                    <input type="date" t-model="state.dateFrom" t-on-change="onDateChange"/>
+                </div>
+                <div class="filter-field">
+                    <label>To Date</label>
+                    <input type="date" t-model="state.dateTo" t-on-change="onDateChange"/>
+                </div>
+            </div>
+            <div class="kpi-section">
+                <div class="kpi-card leads" t-on-click="() => showCardDetails('leads', 'Leads')">
+                    <div class="kpi-label">Total Leads</div>
+                    <div class="kpi-value"><t t-esc="state.leads"/></div>
+                    <div class="kpi-card-link"><a t-on-click.stop="() => openAction([['type','=', 'lead'], ...getDateDomain()], 'Leads')">View list</a></div>
+                </div>
+                <div class="kpi-card opps" t-on-click="() => showCardDetails('opps', 'Opportunities')">
+                    <div class="kpi-label">Total Opportunities</div>
+                    <div class="kpi-value"><t t-esc="state.opportunities"/></div>
+                    <div class="kpi-card-link"><a t-on-click.stop="() => openAction([['type','=', 'opportunity'], ...getDateDomain()], 'Opportunities')">View list</a></div>
+                </div>
+                <div class="kpi-card won" t-on-click="() => showCardDetails('won', 'Won Deals')">
+                    <div class="kpi-label">Won Deals</div>
+                    <div class="kpi-value"><t t-esc="state.won"/></div>
+                    <div class="kpi-card-link"><a t-on-click.stop="() => openAction([['type','=', 'opportunity'], ['stage_id.is_won','=',true], ...getDateDomain()], 'Won Deals')">View list</a></div>
+                </div>
+                <div class="kpi-card lost" t-on-click="() => showCardDetails('lost', 'Lost Deals')">
+                    <div class="kpi-label">Lost Deals</div>
+                    <div class="kpi-value"><t t-esc="state.lost"/></div>
+                    <div class="kpi-card-link"><a t-on-click.stop="() => openAction([['type','=', 'opportunity'], ['stage_id.is_won','=',false], ['active','=',false], ...getDateDomain()], 'Lost Deals')">View list</a></div>
+                </div>
+            </div>
+
+            <div class="card-details" t-if="state.cardDetailsVisible">
+                <div class="section">
+                    <h2><t t-esc="state.cardDetailsTitle"/> — <small><t t-esc="state.dateFrom"/> to <t t-esc="state.dateTo"/></small></h2>
+                    <div t-if="state.cardDetailsLoading">Loading…</div>
+                    <table class="table" t-if="!state.cardDetailsLoading">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Customer</th>
+                                <th>Salesperson</th>
+                                <th>Stage</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="state.cardDetailsRecords" t-as="rec" t-key="rec.id">
+                                <tr class="clickable" t-on-click="() => openAction([['id','=',rec.id]], rec.name)">
+                                    <td><t t-esc="rec.name"/></td>
+                                    <td><t t-esc="rec.partner"/></td>
+                                    <td><t t-esc="rec.user"/></td>
+                                    <td><t t-esc="rec.stage"/></td>
+                                    <td><t t-esc="rec.date"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="charts-section">
+                <div class="chart-container">
+                    <div class="section">
+                        <h2>Opportunities Trend</h2>
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="section">
+                        <h2>Leads by Stage</h2>
+                        <canvas id="stageChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="section">
+                        <h2>Won vs Lost</h2>
+                        <canvas id="winLossChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Team Performance</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Salesperson</th>
+                            <th>Leads</th>
+                            <th>Opportunities</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="state.salesSummary" t-as="sales" t-key="sales.user_id">
+                            <tr>
+                                <td><t t-esc="sales.user_name"/></td>
+                                <td class="clickable" t-on-click="() => openAction([['user_id','=',sales.user_id], ['type','=','lead'], ...getDateDomain()], sales.user_name + ' - Leads')">
+                                    <t t-esc="sales.lead"/>
+                                </td>
+                                <td class="clickable" t-on-click="() => openAction([['user_id','=',sales.user_id], ['type','=','opportunity'], ...getDateDomain()], sales.user_name + ' - Opportunities')">
+                                    <t t-esc="sales.opportunity"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="section">
+                <h2>Top Customers This Month</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Opportunities</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="state.topCustomers" t-as="cust" t-key="cust.partner_id">
+                            <tr>
+                                <td class="clickable" t-on-click="() => openAction([['partner_id','=',cust.partner_id], ['type','=','opportunity'], ...getDateDomain()], 'Opportunities - ' + cust.partner_name)">
+                                    <t t-esc="cust.partner_name"/>
+                                </td>
+                                <td><t t-esc="cust.total"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+</templates>
